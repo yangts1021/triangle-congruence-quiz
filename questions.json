@@ -338,9 +338,9 @@
         }
       },
       "answer": {
-        "correspondence": "△ABC ≅ △FED",
+        "correspondence": "△ABC ≅ △EFD",
         "property": "SSS",
-        "explanation": "AB=FE=5, BC=ED=8, AC=FD=12",
+        "explanation": "AB=EF=5, BC=FD=8, AC=ED=12",
         "verified": true
       },
       "difficulty": 2,
@@ -672,9 +672,9 @@
         }
       },
       "answer": {
-        "correspondence": "△ABC ≅ △DEF",
+        "correspondence": "△ABC ≅ △EFD",
         "property": "SAS",
-        "explanation": "AB=ED=5(實為BA), ∠A=∠E=40°, AC=EF... 需依題目實際邊長標示判讀",
+        "explanation": "AB=EF=5(實為BA), ∠A=∠E=40°, AC=ED",
         "verified": true
       },
       "difficulty": 3,
@@ -729,7 +729,7 @@
           "丙"
         ],
         "property": "RHS",
-        "verified": false,
+        "verified": true,
         "note": "兩個直角三角形,斜邊10、一股6"
       },
       "difficulty": 2,
@@ -777,11 +777,11 @@
       },
       "answer": {
         "congruent_pair": [
-          "甲",
-          "乙"
+          "乙",
+          "丙"
         ],
         "property": "RHS",
-        "verified": false,
+        "verified": true,
         "note": "斜邊5、一股3,直角位置決定全等"
       },
       "difficulty": 2,
@@ -829,11 +829,11 @@
       },
       "answer": {
         "congruent_pair": [
-          "乙",
-          "丙"
+          "甲",
+          "乙"
         ],
         "property": "RHS",
-        "verified": false
+        "verified": true
       },
       "difficulty": 2,
       "tags": [
@@ -884,7 +884,7 @@
           "乙"
         ],
         "property": "RHS",
-        "verified": false,
+        "verified": true,
         "note": "丙是鈍角三角形,不適用 RHS"
       },
       "difficulty": 2,
@@ -922,7 +922,7 @@
       "answer": {
         "correspondence": "△ABC ≅ △EDF",
         "property": "RHS",
-        "verified": false,
+        "verified": true,
         "explanation": "斜邊 AC=EF=5, 一股 BC=DF=3, ∠B=∠D=90°"
       },
       "difficulty": 2,
@@ -959,9 +959,9 @@
         }
       },
       "answer": {
-        "correspondence": "△ABC ≅ △EFD",
+        "correspondence": "△ABC ≅ △DFE",
         "property": "RHS",
-        "verified": false
+        "verified": true
       },
       "difficulty": 3,
       "tags": [
@@ -1017,8 +1017,8 @@
           "甲",
           "丙"
         ],
-        "property": "AAS",
-        "verified": false,
+        "property": "ASA",
+        "verified": true,
         "note": "邊 5 對應同一相對角"
       },
       "difficulty": 2,
@@ -1075,7 +1075,7 @@
           "丙"
         ],
         "property": "ASA",
-        "verified": false
+        "verified": true
       },
       "difficulty": 2,
       "tags": [
@@ -1131,7 +1131,7 @@
           "丙"
         ],
         "property": "ASA",
-        "verified": false
+        "verified": true
       },
       "difficulty": 2,
       "tags": [
@@ -1184,10 +1184,10 @@
       "answer": {
         "congruent_pair": [
           "甲",
-          "乙"
+          "丙"
         ],
         "property": "ASA",
-        "verified": false,
+        "verified": true,
         "note": "需注意角的位置(對應)"
       },
       "difficulty": 3,
@@ -1229,7 +1229,7 @@
       "answer": {
         "correspondence": "△ABC ≅ △DFE",
         "property": "ASA",
-        "verified": false,
+        "verified": true,
         "explanation": "∠A=∠D=30°, AC=DE=3, ∠C=∠E=100°"
       },
       "difficulty": 2,
@@ -1269,9 +1269,9 @@
         }
       },
       "answer": {
-        "correspondence": "△ABC ≅ △DFE",
+        "correspondence": "△ABC ≅ △EFD",
         "property": "ASA",
-        "verified": false
+        "verified": true
       },
       "difficulty": 3,
       "tags": [
@@ -1327,7 +1327,7 @@
           "丙"
         ],
         "property": "AAS",
-        "verified": false
+        "verified": true
       },
       "difficulty": 2,
       "tags": [
@@ -1383,7 +1383,7 @@
           "丙"
         ],
         "property": "AAS",
-        "verified": false
+        "verified": true
       },
       "difficulty": 2,
       "tags": [
@@ -1438,7 +1438,7 @@
           "丙"
         ],
         "property": "AAS",
-        "verified": false
+        "verified": true
       },
       "difficulty": 3,
       "tags": [
@@ -1490,10 +1490,10 @@
       "answer": {
         "congruent_pair": [
           "甲",
-          "乙"
+          "丙"
         ],
-        "property": "ASA",
-        "verified": false
+        "property": "AAS",
+        "verified": true
       },
       "difficulty": 3,
       "tags": [
@@ -1531,9 +1531,9 @@
         }
       },
       "answer": {
-        "correspondence": "△ABC ≅ △EDF",
+        "correspondence": "△ABC ≅ △EFD",
         "property": "AAS",
-        "verified": false
+        "verified": true
       },
       "difficulty": 2,
       "tags": [
@@ -1572,9 +1572,9 @@
         }
       },
       "answer": {
-        "correspondence": "△ABC ≅ △DEF",
+        "correspondence": "△ABC ≅ △DFE",
         "property": "AAS",
-        "verified": false,
+        "verified": true,
         "note": "兩個三角形有相同的角度組合"
       },
       "difficulty": 3,
@@ -1757,7 +1757,7 @@
       "answer": {
         "is_congruent": true,
         "property": "SAS",
-        "verified": false,
+        "verified": true,
         "note": "兩股相等的直角三角形(也可看作 RHS)"
       },
       "difficulty": 1,
@@ -1795,7 +1795,7 @@
       "answer": {
         "is_congruent": true,
         "property": "RHS",
-        "verified": false
+        "verified": true
       },
       "difficulty": 1,
       "tags": [
@@ -1834,8 +1834,8 @@
       },
       "answer": {
         "is_congruent": true,
-        "property": "ASA",
-        "verified": false,
+        "property": "AAS",
+        "verified": true,
         "note": "兩角(30° 與 90°)和夾邊 3"
       },
       "difficulty": 1,
@@ -1875,8 +1875,8 @@
       },
       "answer": {
         "is_congruent": true,
-        "property": "AAS",
-        "verified": false,
+        "property": "ASA",
+        "verified": true,
         "note": "兩角加一邊(非夾邊)"
       },
       "difficulty": 2,
@@ -1916,7 +1916,7 @@
       },
       "answer": {
         "is_congruent": false,
-        "verified": false,
+        "verified": true,
         "note": "邊長不同(5 vs 6),雖然兩角相等"
       },
       "difficulty": 2,
@@ -1955,8 +1955,8 @@
       "answer": {
         "is_congruent": true,
         "property": "RHS",
-        "verified": false,
-        "note": "由勾股定理可推出第一個三角形斜邊也是10"
+        "verified": true,
+        "note": "由勾股定理可推出第一個三角形斜邊也是10 sss"
       },
       "difficulty": 2,
       "tags": [
@@ -1995,7 +1995,7 @@
       "answer": {
         "is_congruent": true,
         "property": "RHS",
-        "verified": false,
+        "verified": true,
         "note": "也可用 SSS(共用邊12)或 SAS"
       },
       "difficulty": 2,
@@ -2033,7 +2033,7 @@
       "answer": {
         "is_congruent": true,
         "property": "SAS",
-        "verified": false,
+        "verified": true,
         "note": "兩邊相等(4)+ 夾角相等(×) + 共用邊"
       },
       "difficulty": 2,
@@ -2071,7 +2071,7 @@
       "answer": {
         "is_congruent": true,
         "property": "SSS",
-        "verified": false,
+        "verified": true,
         "note": "三邊皆相等(5, 6, 對角線4)"
       },
       "difficulty": 2,
@@ -2110,7 +2110,7 @@
       },
       "answer": {
         "is_congruent": false,
-        "verified": false,
+        "verified": true,
         "note": "資訊不足以判定全等(只有 SSA 條件)"
       },
       "difficulty": 3,
@@ -2147,7 +2147,7 @@
       "answer": {
         "is_congruent": true,
         "property": "AAS",
-        "verified": false,
+        "verified": true,
         "note": "對頂角相等 + 直角 + 斜邊 → AAS"
       },
       "difficulty": 3,
@@ -2185,7 +2185,7 @@
       "answer": {
         "is_congruent": true,
         "property": "SAS",
-        "verified": false,
+        "verified": true,
         "note": "對頂角相等 + 兩邊夾角相等"
       },
       "difficulty": 2,
