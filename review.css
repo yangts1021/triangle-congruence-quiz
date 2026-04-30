@@ -1,0 +1,199 @@
+/* 教師核對模式 — 在 styles.css 之上加幾個樣式 */
+
+.toolbar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  position: sticky;
+  top: 64px;
+  z-index: 9;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.toolbar .stats-inline {
+  display: flex;
+  gap: 14px;
+  flex: 1;
+  font-size: 0.92rem;
+  flex-wrap: wrap;
+}
+.toolbar .stats-inline span b { font-weight: 700; }
+.toolbar .filter-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.toolbar .filter-group button {
+  background: #eef0f3;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.toolbar .filter-group button.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.toolbar .export-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.review-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.review-card.verified { border-left: 5px solid var(--correct); }
+.review-card.dirty    { border-left: 5px solid var(--accent); background: #f7faff; }
+.review-card.both     { border-left: 5px solid var(--accent); background: #f0faf3; }
+
+.r-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.r-id {
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+}
+.r-meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.r-meta .badge {
+  display: inline-block;
+  background: #eef2f7;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 4px;
+  font-size: 0.78rem;
+}
+.r-meta .badge.warn { background: #fff4d6; color: var(--warn); }
+.r-meta .badge.ok   { background: #e6f4ea; color: var(--correct); }
+.r-meta .badge.edit { background: #e7f0ff; color: var(--accent); }
+
+.r-body {
+  display: grid;
+  grid-template-columns: minmax(160px, 320px) 1fr;
+  gap: 14px;
+}
+@media (max-width: 640px) {
+  .r-body { grid-template-columns: 1fr; }
+}
+
+.r-image {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: white;
+  cursor: zoom-in;
+}
+
+.r-form { display: flex; flex-direction: column; gap: 10px; }
+
+.r-original {
+  background: #f6f8fa;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.r-original b { color: var(--text); }
+
+.r-edit-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.r-edit-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 130px;
+}
+.r-edit-row label {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.r-edit-row select, .r-edit-row input {
+  padding: 7px 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: white;
+  font-family: inherit;
+}
+.r-edit-row select:focus, .r-edit-row input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.r-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.r-actions button {
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+.r-actions button.primary {
+  background: var(--correct);
+  color: white;
+  border-color: var(--correct);
+}
+.r-actions button.danger {
+  color: var(--wrong);
+}
+
+.matching-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(60px, 1fr));
+  gap: 6px;
+  margin-top: 4px;
+}
+.matching-grid select {
+  padding: 5px;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: zoom-out;
+  padding: 20px;
+}
+.zoom-overlay img {
+  max-width: 100%;
+  max-height: 100%;
+  background: white;
+  border-radius: 8px;
+}
