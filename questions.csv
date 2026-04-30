@@ -29,7 +29,11 @@ G8B-CH2-027,3,3,images/p3_A3.png,multiple_choice_congruent,AAS,甲≅丙,3,是,"
 G8B-CH2-028,3,4,images/p3_A4.png,multiple_choice_congruent,AAS,甲≅丙,3,是,"三角形全等,ASA",
 G8B-CH2-029,3,5(1),images/p3_A5_1.png,vertex_correspondence,AAS,△ABC ≅ △EFD,2,是,"三角形全等,AAS,對應頂點",
 G8B-CH2-030,3,5(2),images/p3_A5_2.png,vertex_correspondence,AAS,△ABC ≅ △DFE,3,是,"三角形全等,AAS,對應頂點",兩個三角形有相同的角度組合
-G8B-CH2-031,3,綜合,images/p3_B_combined.png,matching_combined,混合,1≅8(RHS); 2≅10(SSS); 3≅7(ASA); 4≅6(SAS); 5≅9(AAS),3,否,"三角形全等,綜合,配對,SSS,SAS,ASA,AAS,RHS","答案需仔細比對每個三角形的條件,以上為初步判讀"
+G8B-CH2-031-1,3,綜合(1),images/p3_B_combined.png,matching_single_pair,RHS,①≅⑧,3,否,"三角形全等,綜合,RHS",
+G8B-CH2-031-2,3,綜合(2),images/p3_B_combined.png,matching_single_pair,SSS,②≅⑩,3,否,"三角形全等,綜合,SSS",
+G8B-CH2-031-3,3,綜合(3),images/p3_B_combined.png,matching_single_pair,ASA,③≅⑦,3,否,"三角形全等,綜合,ASA",
+G8B-CH2-031-4,3,綜合(4),images/p3_B_combined.png,matching_single_pair,SAS,④≅⑥,3,否,"三角形全等,綜合,SAS",
+G8B-CH2-031-5,3,綜合(5),images/p3_B_combined.png,matching_single_pair,AAS,⑤≅⑨,3,否,"三角形全等,綜合,AAS",
 G8B-CH2-032,4,1,images/p4_U1.png,judge_congruent,SAS,全等,1,是,"三角形全等,判斷題,直角三角形,SAS",兩股相等的直角三角形(也可看作 RHS)
 G8B-CH2-033,4,2,images/p4_U2.png,judge_congruent,RHS,全等,1,是,"三角形全等,判斷題,直角三角形,RHS",
 G8B-CH2-034,4,3,images/p4_U3.png,judge_congruent,AAS,全等,1,是,"三角形全等,判斷題,直角三角形,ASA",兩角(30° 與 90°)和夾邊 3

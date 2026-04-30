@@ -2,7 +2,7 @@
   "metadata": {
     "version": "2.0",
     "created_date": "2026-04-29",
-    "total_questions": 43,
+    "total_questions": 47,
     "subject": "數學",
     "grade": "8下",
     "chapter": "第2章 三角形全等",
@@ -15,7 +15,7 @@
     "pages_summary": {
       "p1": "12 題 - SSS / SAS 邊長與角度題",
       "p2": "12 題 - RHS 直角三角形 + ASA/AAS 角度題",
-      "p3": "7 題 - AAS / 配對綜合題",
+      "p3": "11 題 - AAS / 綜合(拆 5 題)",
       "p4": "12 題 - 直角三角形判斷 + 圖形辨識(共用邊/對頂角等)"
     },
     "schema_notes": {
@@ -25,7 +25,7 @@
         "vertex_correspondence (寫對應頂點)",
         "judge_congruent (是否全等?)",
         "judge_congruent_with_figure (帶圖示判斷)",
-        "matching_combined (10 個三角形找 5 組全等)"
+        "matching_single_pair (10 個三角形中找出與指定三角形全等的一個)"
       ],
       "property_options": [
         "SSS",
@@ -1585,13 +1585,21 @@
       ]
     },
     {
-      "id": "G8B-CH2-031",
+      "id": "G8B-CH2-031-1",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 3,
+        "section": "綜合配對拆分"
+      },
       "page": 3,
-      "question_number": "綜合",
+      "question_number": "綜合(1)",
       "image": "images/p3_B_combined.png",
-      "type": "matching_combined",
-      "instruction": "下圖①~⑩的三角形中,共有五組全等三角形,請找出來並說明所根據的全等性質",
+      "type": "matching_single_pair",
+      "instruction": "下圖①~⑩的三角形中,找出與 ① 全等的三角形,並寫出全等性質",
       "given": {
+        "target": 1,
+        "total": 10,
         "triangles": [
           {
             "id": 1,
@@ -1689,46 +1697,511 @@
         ]
       },
       "answer": {
-        "pairs": [
-          {
-            "a": 1,
-            "b": 8,
-            "property": "RHS"
-          },
-          {
-            "a": 2,
-            "b": 10,
-            "property": "SSS"
-          },
-          {
-            "a": 3,
-            "b": 7,
-            "property": "ASA"
-          },
-          {
-            "a": 4,
-            "b": 6,
-            "property": "SAS"
-          },
-          {
-            "a": 5,
-            "b": 9,
-            "property": "AAS"
-          }
-        ],
-        "verified": false,
-        "note": "答案需仔細比對每個三角形的條件,以上為初步判讀"
+        "match": 8,
+        "property": "RHS",
+        "verified": false
       },
       "difficulty": 3,
       "tags": [
         "三角形全等",
         "綜合",
-        "配對",
-        "SSS",
-        "SAS",
-        "ASA",
-        "AAS",
         "RHS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-031-2",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 3,
+        "section": "綜合配對拆分"
+      },
+      "page": 3,
+      "question_number": "綜合(2)",
+      "image": "images/p3_B_combined.png",
+      "type": "matching_single_pair",
+      "instruction": "下圖①~⑩的三角形中,找出與 ② 全等的三角形,並寫出全等性質",
+      "given": {
+        "target": 2,
+        "total": 10,
+        "triangles": [
+          {
+            "id": 1,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true,
+            "right_position": "兩邊夾角"
+          },
+          {
+            "id": 2,
+            "sides": [
+              7,
+              4,
+              6
+            ]
+          },
+          {
+            "id": 3,
+            "sides": [
+              7
+            ],
+            "angles": [
+              30,
+              50
+            ]
+          },
+          {
+            "id": 4,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 5,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 6,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 7,
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              30
+            ]
+          },
+          {
+            "id": 8,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true
+          },
+          {
+            "id": 9,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 10,
+            "sides": [
+              6,
+              7,
+              4
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "match": 10,
+        "property": "SSS",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "綜合",
+        "SSS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-031-3",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 3,
+        "section": "綜合配對拆分"
+      },
+      "page": 3,
+      "question_number": "綜合(3)",
+      "image": "images/p3_B_combined.png",
+      "type": "matching_single_pair",
+      "instruction": "下圖①~⑩的三角形中,找出與 ③ 全等的三角形,並寫出全等性質",
+      "given": {
+        "target": 3,
+        "total": 10,
+        "triangles": [
+          {
+            "id": 1,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true,
+            "right_position": "兩邊夾角"
+          },
+          {
+            "id": 2,
+            "sides": [
+              7,
+              4,
+              6
+            ]
+          },
+          {
+            "id": 3,
+            "sides": [
+              7
+            ],
+            "angles": [
+              30,
+              50
+            ]
+          },
+          {
+            "id": 4,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 5,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 6,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 7,
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              30
+            ]
+          },
+          {
+            "id": 8,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true
+          },
+          {
+            "id": 9,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 10,
+            "sides": [
+              6,
+              7,
+              4
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "match": 7,
+        "property": "ASA",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "綜合",
+        "ASA"
+      ]
+    },
+    {
+      "id": "G8B-CH2-031-4",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 3,
+        "section": "綜合配對拆分"
+      },
+      "page": 3,
+      "question_number": "綜合(4)",
+      "image": "images/p3_B_combined.png",
+      "type": "matching_single_pair",
+      "instruction": "下圖①~⑩的三角形中,找出與 ④ 全等的三角形,並寫出全等性質",
+      "given": {
+        "target": 4,
+        "total": 10,
+        "triangles": [
+          {
+            "id": 1,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true,
+            "right_position": "兩邊夾角"
+          },
+          {
+            "id": 2,
+            "sides": [
+              7,
+              4,
+              6
+            ]
+          },
+          {
+            "id": 3,
+            "sides": [
+              7
+            ],
+            "angles": [
+              30,
+              50
+            ]
+          },
+          {
+            "id": 4,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 5,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 6,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 7,
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              30
+            ]
+          },
+          {
+            "id": 8,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true
+          },
+          {
+            "id": 9,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 10,
+            "sides": [
+              6,
+              7,
+              4
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "match": 6,
+        "property": "SAS",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "綜合",
+        "SAS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-031-5",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 3,
+        "section": "綜合配對拆分"
+      },
+      "page": 3,
+      "question_number": "綜合(5)",
+      "image": "images/p3_B_combined.png",
+      "type": "matching_single_pair",
+      "instruction": "下圖①~⑩的三角形中,找出與 ⑤ 全等的三角形,並寫出全等性質",
+      "given": {
+        "target": 5,
+        "total": 10,
+        "triangles": [
+          {
+            "id": 1,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true,
+            "right_position": "兩邊夾角"
+          },
+          {
+            "id": 2,
+            "sides": [
+              7,
+              4,
+              6
+            ]
+          },
+          {
+            "id": 3,
+            "sides": [
+              7
+            ],
+            "angles": [
+              30,
+              50
+            ]
+          },
+          {
+            "id": 4,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 5,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 6,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 7,
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              30
+            ]
+          },
+          {
+            "id": 8,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true
+          },
+          {
+            "id": 9,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 10,
+            "sides": [
+              6,
+              7,
+              4
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "match": 9,
+        "property": "AAS",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "綜合",
+        "AAS"
       ]
     },
     {

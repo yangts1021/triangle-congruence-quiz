@@ -8,7 +8,10 @@ const TYPE_LABEL = {
   judge_congruent: "判斷是否全等",
   judge_congruent_with_figure: "判斷是否全等(圖形題)",
   matching_combined: "綜合配對",
+  matching_single_pair: "綜合(找全等對)",
 };
+
+const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
 
 const state = {
   view: "loading",   // loading | home | quiz | result
@@ -302,6 +305,27 @@ function renderAnswerInputs(q) {
         el("input", { id: aid("note"), type: "text", placeholder: "可在此記下你的答案,例如：①≅⑧(RHS)、②≅⑩(SSS)…", autocomplete: "off" }),
       )
     );
+  } else if (q.type === "matching_single_pair") {
+    const target = q.given && q.given.target;
+    const total = (q.given && q.given.total) || 10;
+    const labelText = `與 ${CIRCLED[target-1]} 全等的三角形`;
+    const opts = [];
+    for (let i = 1; i <= total; i++) if (i !== target) opts.push(i);
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, labelText),
+        el("select", { id: aid("match") },
+          el("option", { value: "" }, "── 請選擇 ──"),
+          ...opts.map(n => el("option", { value: String(n) }, CIRCLED[n-1])),
+        ),
+      )
+    );
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, "全等性質"),
+        propSelect("prop", false),
+      )
+    );
   }
 
   return wrap;
@@ -325,6 +349,9 @@ function readAnswer(q) {
   }
   if (q.type === "matching_combined") {
     return { note: get("note") };
+  }
+  if (q.type === "matching_single_pair") {
+    return { match: get("match"), prop: get("prop") };
   }
   return {};
 }
@@ -403,6 +430,26 @@ function gradeQuestion(q, ans) {
       expected: pairsText || "(無)",
     });
     return { correct: null, parts };
+  }
+  if (q.type === "matching_single_pair") {
+    const target = q.given && q.given.target;
+    const expectedMatch = q.answer.match;
+    const yourMatch = parseInt(ans.match, 10);
+    const matchOk = !isNaN(yourMatch) && yourMatch === expectedMatch;
+    parts.push({
+      label: `與 ${cir(target)} 全等的三角形`,
+      ok: matchOk,
+      you: yourMatch ? cir(yourMatch) : "(未填)",
+      expected: cir(expectedMatch),
+    });
+    const propOk = (ans.prop || "") === (q.answer.property || "");
+    parts.push({
+      label: "全等性質",
+      ok: propOk,
+      you: ans.prop || "(未填)",
+      expected: q.answer.property || "─",
+    });
+    return { correct: matchOk && propOk, parts };
   }
   return { correct: null, parts: [] };
 }

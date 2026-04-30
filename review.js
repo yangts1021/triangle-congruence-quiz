@@ -10,7 +10,10 @@ const TYPE_LABEL = {
   judge_congruent: "判斷",
   judge_congruent_with_figure: "判斷(圖)",
   matching_combined: "綜合配對",
+  matching_single_pair: "綜合(單組)",
 };
+
+const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
 
 const state = {
   questions: [],
@@ -235,6 +238,27 @@ function renderForm(q, ans) {
         grid,
       )
     ));
+  } else if (q.type === "matching_single_pair") {
+    const target = q.given && q.given.target;
+    const total = (q.given && q.given.total) || 10;
+    const opts = [];
+    for (let i = 1; i <= total; i++) if (i !== target) opts.push(String(i));
+    wrap.appendChild(el("div", { class: "r-edit-row" },
+      el("div", null,
+        el("label", null, `與 ${CIRCLED[target-1]} 全等的三角形`),
+        select(["", ...opts], String(ans.match || ""), v => {
+          setEdit(q.id, { match: v ? parseInt(v, 10) : undefined });
+          rerender(q.id);
+        }, v => v ? CIRCLED[parseInt(v)-1] : "──"),
+      ),
+      el("div", null,
+        el("label", null, "全等性質"),
+        select(["", ...PROPS], ans.property || "", v => {
+          setEdit(q.id, { property: v || undefined });
+          rerender(q.id);
+        }, v => v || "──"),
+      ),
+    ));
   }
 
   // Note + verified actions
@@ -288,7 +312,11 @@ function formatAnswer(q, a) {
     return `${a.is_congruent ? "全等" : "不全等"} ${a.property ? "("+a.property+")" : ""}`;
   }
   if (q.type === "matching_combined") {
-    return (a.pairs || []).map(p => "①②③④⑤⑥⑦⑧⑨⑩"[p.a-1]+"≅"+"①②③④⑤⑥⑦⑧⑨⑩"[p.b-1]+"("+p.property+")").join(", ");
+    return (a.pairs || []).map(p => CIRCLED[p.a-1]+"≅"+CIRCLED[p.b-1]+"("+p.property+")").join(", ");
+  }
+  if (q.type === "matching_single_pair") {
+    const t = q.given && q.given.target;
+    return `${CIRCLED[t-1]}≅${a.match ? CIRCLED[a.match-1] : "?"} (${a.property || "?"})`;
   }
   return "?";
 }
@@ -349,6 +377,9 @@ function exportCSV() {
     } else if (q.type === "matching_combined") {
       prop = "混合";
       answer = (a.pairs || []).map(p => `${p.a}≅${p.b}(${p.property})`).join("; ");
+    } else if (q.type === "matching_single_pair") {
+      const t = q.given && q.given.target;
+      answer = `${CIRCLED[t-1]}≅${a.match ? CIRCLED[a.match-1] : ""}`;
     }
     rows.push([
       q.id,
