@@ -55,12 +55,17 @@ function pairKey(a, b) {
   return [a, b].sort().join("");
 }
 
-function normalizeCorrespondence(s) {
-  if (!s) return "";
-  return s
-    .replace(/[△∆\s]/g, "")
-    .replace(/[≅=]/g, "=")
-    .toUpperCase();
+function parseCorrespondence(q) {
+  // Returns {first, second} extracted from q.answer.correspondence (e.g., "△ABC ≅ △DFE")
+  const s = (q && q.answer && q.answer.correspondence) || "";
+  const m = s.match(/△?\s*([A-Za-z]+)\s*[≅=]\s*△?\s*([A-Za-z]+)/);
+  if (m) return { first: m[1].toUpperCase(), second: m[2].toUpperCase() };
+  const fallback = (q && q.given && q.given.triangle_1 && q.given.triangle_1.name) || "";
+  return { first: fallback.toUpperCase(), second: "" };
+}
+
+function normVertex(s) {
+  return (s || "").replace(/[^A-Za-z]/g, "").toUpperCase();
 }
 
 /* ---------------- screens ---------------- */
@@ -244,10 +249,22 @@ function renderAnswerInputs(q) {
       )
     );
   } else if (q.type === "vertex_correspondence") {
+    const firstName = parseCorrespondence(q).first || "ABC";
     wrap.appendChild(
       el("div", { class: "answer-field" },
-        el("label", null, "對應(例如：△ABC ≅ △DFE)"),
-        el("input", { id: aid("corr"), type: "text", placeholder: "△ABC ≅ △???", autocomplete: "off" }),
+        el("label", null, "對應頂點(只填第二個三角形)"),
+        el("div", { class: "corr-input" },
+          el("span", { class: "corr-prefix" }, `△${firstName} ≅ △`),
+          el("input", {
+            id: aid("corr"),
+            type: "text",
+            placeholder: "如 DFE",
+            autocomplete: "off",
+            autocapitalize: "characters",
+            spellcheck: "false",
+            maxlength: 6,
+          }),
+        ),
       )
     );
     wrap.appendChild(
@@ -338,14 +355,14 @@ function gradeQuestion(q, ans) {
     return { correct: pairOk && propOk, parts };
   }
   if (q.type === "vertex_correspondence") {
-    const yourCorr = normalizeCorrespondence(ans.corr);
-    const expectedCorr = normalizeCorrespondence(q.answer.correspondence);
-    const corrOk = yourCorr.length > 0 && yourCorr === expectedCorr;
+    const { first, second: expectedSecond } = parseCorrespondence(q);
+    const yourSecond = normVertex(ans.corr);
+    const corrOk = yourSecond.length > 0 && yourSecond === expectedSecond;
     parts.push({
-      label: "對應",
+      label: "對應頂點",
       ok: corrOk,
-      you: ans.corr || "(未填)",
-      expected: q.answer.correspondence || "─",
+      you: yourSecond ? `△${first} ≅ △${yourSecond}` : "(未填)",
+      expected: q.answer.correspondence || (expectedSecond ? `△${first} ≅ △${expectedSecond}` : "─"),
     });
     const propOk = (ans.prop || "") === (q.answer.property || "");
     parts.push({
