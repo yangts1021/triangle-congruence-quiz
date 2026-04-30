@@ -1,0 +1,44 @@
+﻿id,頁次,題號,圖片,題型,全等性質,答案,難度,已核對,標籤,備註
+G8B-CH2-001,1,1,images/p1_A1.png,multiple_choice_congruent,SSS,甲≅丙,1,是,"三角形全等,SSS,邊邊邊",
+G8B-CH2-002,1,2,images/p1_A2.png,multiple_choice_congruent,SSS,乙≅丙,1,是,"三角形全等,SSS,邊邊邊",
+G8B-CH2-003,1,3,images/p1_A3.png,multiple_choice_congruent,SSS,甲≅丙,1,是,"三角形全等,SSS,邊邊邊",
+G8B-CH2-004,1,4,images/p1_A4.png,multiple_choice_congruent,SSS,甲≅丙,1,是,"三角形全等,SSS,邊邊邊",
+G8B-CH2-005,1,5(1),images/p1_A5_1.png,vertex_correspondence,SSS,△ABC ≅ △DFE,2,是,"三角形全等,SSS,對應頂點",
+G8B-CH2-006,1,5(2),images/p1_A5_2.png,vertex_correspondence,SSS,△ABC ≅ △FED,2,是,"三角形全等,SSS,對應頂點",
+G8B-CH2-007,1,1,images/p1_B1.png,multiple_choice_congruent,SAS,甲≅丙,2,是,"三角形全等,SAS,邊角邊",
+G8B-CH2-008,1,2,images/p1_B2.png,multiple_choice_congruent,SAS,乙≅丙,2,是,"三角形全等,SAS,邊角邊",
+G8B-CH2-009,1,3,images/p1_B3.png,multiple_choice_congruent,SAS,甲≅丙,2,是,"三角形全等,SAS,邊角邊",
+G8B-CH2-010,1,4,images/p1_B4.png,multiple_choice_congruent,SAS,甲≅丙,3,是,"三角形全等,SAS,邊角邊,夾角辨識",需仔細判斷夾角位置
+G8B-CH2-011,1,5(1),images/p1_B5_1.png,vertex_correspondence,SAS,△ABC ≅ △DFE,2,是,"三角形全等,SAS,對應頂點",
+G8B-CH2-012,1,5(2),images/p1_B5_2.png,vertex_correspondence,SAS,△ABC ≅ △DEF,3,是,"三角形全等,SAS,對應頂點",
+G8B-CH2-013,2,1,images/p2_A1.png,multiple_choice_congruent,RHS,乙≅丙,2,否,"三角形全等,RHS,直角三角形","兩個直角三角形,斜邊10、一股6"
+G8B-CH2-014,2,2,images/p2_A2.png,multiple_choice_congruent,RHS,甲≅乙,2,否,"三角形全等,RHS,直角三角形","斜邊5、一股3,直角位置決定全等"
+G8B-CH2-015,2,3,images/p2_A3.png,multiple_choice_congruent,RHS,乙≅丙,2,否,"三角形全等,RHS,直角三角形",
+G8B-CH2-016,2,4,images/p2_A4.png,multiple_choice_congruent,RHS,甲≅乙,2,否,"三角形全等,RHS,直角三角形","丙是鈍角三角形,不適用 RHS"
+G8B-CH2-017,2,5(1),images/p2_A5_1.png,vertex_correspondence,RHS,△ABC ≅ △EDF,2,否,"三角形全等,RHS,對應頂點,直角三角形",
+G8B-CH2-018,2,5(2),images/p2_A5_2.png,vertex_correspondence,RHS,△ABC ≅ △EFD,3,否,"三角形全等,RHS,對應頂點,直角三角形",
+G8B-CH2-019,2,1,images/p2_B1.png,multiple_choice_congruent,AAS,甲≅丙,2,否,"三角形全等,AAS,角角邊",邊 5 對應同一相對角
+G8B-CH2-020,2,2,images/p2_B2.png,multiple_choice_congruent,ASA,甲≅丙,2,否,"三角形全等,ASA,角邊角",
+G8B-CH2-021,2,3,images/p2_B3.png,multiple_choice_congruent,ASA,甲≅丙,2,否,"三角形全等,ASA,角邊角",
+G8B-CH2-022,2,4,images/p2_B4.png,multiple_choice_congruent,ASA,甲≅乙,3,否,"三角形全等,ASA,夾邊辨識",需注意角的位置(對應)
+G8B-CH2-023,2,5(1),images/p2_B5_1.png,vertex_correspondence,ASA,△ABC ≅ △DFE,2,否,"三角形全等,ASA,對應頂點",
+G8B-CH2-024,2,5(2),images/p2_B5_2.png,vertex_correspondence,ASA,△ABC ≅ △DFE,3,否,"三角形全等,ASA,對應頂點",
+G8B-CH2-025,3,1,images/p3_A1.png,multiple_choice_congruent,AAS,甲≅丙,2,否,"三角形全等,AAS,角角邊",
+G8B-CH2-026,3,2,images/p3_A2.png,multiple_choice_congruent,AAS,甲≅丙,2,否,"三角形全等,AAS",
+G8B-CH2-027,3,3,images/p3_A3.png,multiple_choice_congruent,AAS,甲≅丙,3,否,"三角形全等,AAS",
+G8B-CH2-028,3,4,images/p3_A4.png,multiple_choice_congruent,ASA,甲≅乙,3,否,"三角形全等,ASA",
+G8B-CH2-029,3,5(1),images/p3_A5_1.png,vertex_correspondence,AAS,△ABC ≅ △EDF,2,否,"三角形全等,AAS,對應頂點",
+G8B-CH2-030,3,5(2),images/p3_A5_2.png,vertex_correspondence,AAS,△ABC ≅ △DEF,3,否,"三角形全等,AAS,對應頂點",兩個三角形有相同的角度組合
+G8B-CH2-031,3,綜合,images/p3_B_combined.png,matching_combined,混合,1≅8(RHS); 2≅10(SSS); 3≅7(ASA); 4≅6(SAS); 5≅9(AAS),3,否,"三角形全等,綜合,配對,SSS,SAS,ASA,AAS,RHS","答案需仔細比對每個三角形的條件,以上為初步判讀"
+G8B-CH2-032,4,1,images/p4_U1.png,judge_congruent,SAS,全等,1,否,"三角形全等,判斷題,直角三角形,SAS",兩股相等的直角三角形(也可看作 RHS)
+G8B-CH2-033,4,2,images/p4_U2.png,judge_congruent,RHS,全等,1,否,"三角形全等,判斷題,直角三角形,RHS",
+G8B-CH2-034,4,3,images/p4_U3.png,judge_congruent,ASA,全等,1,否,"三角形全等,判斷題,直角三角形,ASA",兩角(30° 與 90°)和夾邊 3
+G8B-CH2-035,4,4,images/p4_U4.png,judge_congruent,AAS,全等,2,否,"三角形全等,判斷題,直角三角形,AAS",兩角加一邊(非夾邊)
+G8B-CH2-036,4,5,images/p4_U5.png,judge_congruent,,不全等,2,否,"三角形全等,判斷題,不全等,直角三角形","邊長不同(5 vs 6),雖然兩角相等"
+G8B-CH2-037,4,6,images/p4_U6.png,judge_congruent,RHS,全等,2,否,"三角形全等,判斷題,直角三角形,RHS",由勾股定理可推出第一個三角形斜邊也是10
+G8B-CH2-038,4,1(1)左,images/p4_D_L_1.png,judge_congruent_with_figure,RHS,全等,2,否,"三角形全等,判斷題,輔助線,RHS",也可用 SSS(共用邊12)或 SAS
+G8B-CH2-039,4,1(2)左,images/p4_D_L_2.png,judge_congruent_with_figure,SAS,全等,2,否,"三角形全等,判斷題,共用邊,SAS",兩邊相等(4)+ 夾角相等(×) + 共用邊
+G8B-CH2-040,4,1(3)左,images/p4_D_L_3.png,judge_congruent_with_figure,SSS,全等,2,否,"三角形全等,判斷題,平行四邊形,SSS","三邊皆相等(5, 6, 對角線4)"
+G8B-CH2-041,4,1(1)右,images/p4_D_R_1.png,judge_congruent_with_figure,,不全等,3,否,"三角形全等,判斷題,不全等,SSA陷阱",資訊不足以判定全等(只有 SSA 條件)
+G8B-CH2-042,4,1(2)右,images/p4_D_R_2.png,judge_congruent_with_figure,AAS,全等,3,否,"三角形全等,判斷題,對頂角,直角三角形,AAS",對頂角相等 + 直角 + 斜邊 → AAS
+G8B-CH2-043,4,1(3)右,images/p4_D_R_3.png,judge_congruent_with_figure,SAS,全等,2,否,"三角形全等,判斷題,對頂角,蝴蝶形,SAS",對頂角相等 + 兩邊夾角相等

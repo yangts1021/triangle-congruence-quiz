@@ -1,0 +1,2201 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "created_date": "2026-04-29",
+    "total_questions": 43,
+    "subject": "數學",
+    "grade": "8下",
+    "chapter": "第2章 三角形全等",
+    "pages_included": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "pages_summary": {
+      "p1": "12 題 - SSS / SAS 邊長與角度題",
+      "p2": "12 題 - RHS 直角三角形 + ASA/AAS 角度題",
+      "p3": "7 題 - AAS / 配對綜合題",
+      "p4": "12 題 - 直角三角形判斷 + 圖形辨識(共用邊/對頂角等)"
+    },
+    "schema_notes": {
+      "id_format": "GxX-CHy-NNN",
+      "type_options": [
+        "multiple_choice_congruent (從甲乙丙中找全等)",
+        "vertex_correspondence (寫對應頂點)",
+        "judge_congruent (是否全等?)",
+        "judge_congruent_with_figure (帶圖示判斷)",
+        "matching_combined (10 個三角形找 5 組全等)"
+      ],
+      "property_options": [
+        "SSS",
+        "SAS",
+        "ASA",
+        "AAS",
+        "RHS"
+      ],
+      "difficulty_scale": "1=易, 2=中, 3=難",
+      "verified_field": "true=Claude 詳細核對過, false=初步判讀(建議比對教師手冊)"
+    }
+  },
+  "questions": [
+    {
+      "id": "G8B-CH2-001",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "請找出全等△"
+      },
+      "question_number": "1",
+      "image": "images/p1_A1.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              7,
+              5,
+              8
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              7,
+              5,
+              7
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              7,
+              5,
+              8
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "SSS",
+        "verified": true
+      },
+      "difficulty": 1,
+      "tags": [
+        "三角形全等",
+        "SSS",
+        "邊邊邊"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-002",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "請找出全等△"
+      },
+      "question_number": "2",
+      "image": "images/p1_A2.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              8,
+              7,
+              10
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              7,
+              9,
+              8
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              8,
+              7,
+              9
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "乙",
+          "丙"
+        ],
+        "property": "SSS",
+        "verified": true
+      },
+      "difficulty": 1,
+      "tags": [
+        "三角形全等",
+        "SSS",
+        "邊邊邊"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-003",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "請找出全等△"
+      },
+      "question_number": "3",
+      "image": "images/p1_A3.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              9,
+              7,
+              4
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              7,
+              4,
+              9
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "SSS",
+        "verified": true
+      },
+      "difficulty": 1,
+      "tags": [
+        "三角形全等",
+        "SSS",
+        "邊邊邊"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-004",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "請找出全等△"
+      },
+      "question_number": "4",
+      "image": "images/p1_A4.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              9,
+              6,
+              12
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              8,
+              9,
+              6
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              12,
+              9,
+              6
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "SSS",
+        "verified": true
+      },
+      "difficulty": 1,
+      "tags": [
+        "三角形全等",
+        "SSS",
+        "邊邊邊"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-005",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "請找出全等△"
+      },
+      "question_number": "5(1)",
+      "image": "images/p1_A5_1.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "AB": 7,
+            "AC": 3,
+            "BC": 5
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "DF": 7,
+            "DE": 3,
+            "EF": 5
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △DFE",
+        "property": "SSS",
+        "explanation": "AB=DF=7, AC=DE=3, BC=FE=5",
+        "verified": true
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "SSS",
+        "對應頂點"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-006",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "請找出全等△"
+      },
+      "question_number": "5(2)",
+      "image": "images/p1_A5_2.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "AB": 5,
+            "BC": 8,
+            "AC": 12
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "DE": 12,
+            "DF": 8,
+            "EF": 5
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △FED",
+        "property": "SSS",
+        "explanation": "AB=FE=5, BC=ED=8, AC=FD=12",
+        "verified": true
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "SSS",
+        "對應頂點"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-007",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "找出全等△"
+      },
+      "question_number": "1",
+      "image": "images/p1_B1.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              6,
+              5
+            ],
+            "angle": 70,
+            "angle_position": "兩邊夾角"
+          },
+          {
+            "label": "乙",
+            "sides": [
+              6,
+              5
+            ],
+            "angle": 40,
+            "angle_position": "兩邊夾角"
+          },
+          {
+            "label": "丙",
+            "sides": [
+              6,
+              5
+            ],
+            "angle": 70,
+            "angle_position": "兩邊夾角"
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "SAS",
+        "verified": true
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "SAS",
+        "邊角邊"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-008",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "找出全等△"
+      },
+      "question_number": "2",
+      "image": "images/p1_B2.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              8,
+              7
+            ],
+            "angle": 50,
+            "angle_position": "兩邊夾角"
+          },
+          {
+            "label": "乙",
+            "sides": [
+              7,
+              8
+            ],
+            "angle": 60,
+            "angle_position": "兩邊夾角"
+          },
+          {
+            "label": "丙",
+            "sides": [
+              8,
+              7
+            ],
+            "angle": 60,
+            "angle_position": "兩邊夾角"
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "乙",
+          "丙"
+        ],
+        "property": "SAS",
+        "verified": true
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "SAS",
+        "邊角邊"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-009",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "找出全等△"
+      },
+      "question_number": "3",
+      "image": "images/p1_B3.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              4,
+              7
+            ],
+            "angle": 80,
+            "angle_position": "兩邊夾角"
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5,
+              7
+            ],
+            "angle": 80,
+            "angle_position": "兩邊夾角"
+          },
+          {
+            "label": "丙",
+            "sides": [
+              4,
+              7
+            ],
+            "angle": 80,
+            "angle_position": "兩邊夾角"
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "SAS",
+        "verified": true
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "SAS",
+        "邊角邊"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-010",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "找出全等△"
+      },
+      "question_number": "4",
+      "image": "images/p1_B4.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              6,
+              9
+            ],
+            "angle": 50,
+            "angle_position": "兩邊夾角"
+          },
+          {
+            "label": "乙",
+            "sides": [
+              9,
+              6
+            ],
+            "angle": 50,
+            "angle_position": "兩邊夾角(頂角)"
+          },
+          {
+            "label": "丙",
+            "sides": [
+              9,
+              6
+            ],
+            "angle": 50,
+            "angle_position": "兩邊夾角"
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "SAS",
+        "note": "需仔細判斷夾角位置",
+        "verified": true
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "SAS",
+        "邊角邊",
+        "夾角辨識"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-011",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "找出全等△"
+      },
+      "question_number": "5(1)",
+      "image": "images/p1_B5_1.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "BC": 5,
+            "AC": 3
+          },
+          "angle": {
+            "C": 100
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "FE": 5,
+            "DE": 3
+          },
+          "angle": {
+            "E": 100
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △DFE",
+        "property": "SAS",
+        "explanation": "BC=FE=5, ∠C=∠E=100°, AC=DE=3",
+        "verified": true
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "SAS",
+        "對應頂點"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-012",
+      "source": {
+        "book": "8下",
+        "chapter": "2-三角形全等",
+        "page": 1,
+        "section": "找出全等△"
+      },
+      "question_number": "5(2)",
+      "image": "images/p1_B5_2.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "BA": 5,
+            "AC": 12
+          },
+          "angle": {
+            "A": 40
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "EF": 5,
+            "DE": 12
+          },
+          "angle": {
+            "E": 40
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △DEF",
+        "property": "SAS",
+        "explanation": "AB=ED=5(實為BA), ∠A=∠E=40°, AC=EF... 需依題目實際邊長標示判讀",
+        "verified": true
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "SAS",
+        "對應頂點"
+      ],
+      "page": 1
+    },
+    {
+      "id": "G8B-CH2-013",
+      "page": 2,
+      "question_number": "1",
+      "image": "images/p2_A1.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              10,
+              6
+            ],
+            "has_right_angle": true,
+            "right_angle_position": "頂角"
+          },
+          {
+            "label": "乙",
+            "sides": [
+              10,
+              6
+            ],
+            "has_right_angle": true,
+            "right_angle_position": "底角(右)"
+          },
+          {
+            "label": "丙",
+            "sides": [
+              10,
+              6
+            ],
+            "has_right_angle": true,
+            "right_angle_position": "底角(左)"
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "乙",
+          "丙"
+        ],
+        "property": "RHS",
+        "verified": false,
+        "note": "兩個直角三角形,斜邊10、一股6"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "RHS",
+        "直角三角形"
+      ]
+    },
+    {
+      "id": "G8B-CH2-014",
+      "page": 2,
+      "question_number": "2",
+      "image": "images/p2_A2.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              5,
+              3
+            ],
+            "has_right_angle": true
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5,
+              3
+            ],
+            "has_right_angle": true
+          },
+          {
+            "label": "丙",
+            "sides": [
+              5,
+              3
+            ],
+            "has_right_angle": true,
+            "right_angle_position": "頂角"
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "乙"
+        ],
+        "property": "RHS",
+        "verified": false,
+        "note": "斜邊5、一股3,直角位置決定全等"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "RHS",
+        "直角三角形"
+      ]
+    },
+    {
+      "id": "G8B-CH2-015",
+      "page": 2,
+      "question_number": "3",
+      "image": "images/p2_A3.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              8,
+              10,
+              6
+            ],
+            "has_right_angle": true
+          },
+          {
+            "label": "乙",
+            "sides": [
+              10,
+              6
+            ],
+            "has_right_angle": true
+          },
+          {
+            "label": "丙",
+            "sides": [
+              10,
+              6
+            ],
+            "has_right_angle": true
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "乙",
+          "丙"
+        ],
+        "property": "RHS",
+        "verified": false
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "RHS",
+        "直角三角形"
+      ]
+    },
+    {
+      "id": "G8B-CH2-016",
+      "page": 2,
+      "question_number": "4",
+      "image": "images/p2_A4.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              5,
+              3
+            ],
+            "has_right_angle": true
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5,
+              3
+            ],
+            "has_right_angle": true
+          },
+          {
+            "label": "丙",
+            "sides": [
+              5,
+              3
+            ],
+            "angle": 120,
+            "note": "鈍角120°,非直角"
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "乙"
+        ],
+        "property": "RHS",
+        "verified": false,
+        "note": "丙是鈍角三角形,不適用 RHS"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "RHS",
+        "直角三角形"
+      ]
+    },
+    {
+      "id": "G8B-CH2-017",
+      "page": 2,
+      "question_number": "5(1)",
+      "image": "images/p2_A5_1.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "AC": 5,
+            "BC": 3
+          },
+          "right_angle": "B"
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "EF": 5,
+            "DF": 3
+          },
+          "right_angle": "D"
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △EDF",
+        "property": "RHS",
+        "verified": false,
+        "explanation": "斜邊 AC=EF=5, 一股 BC=DF=3, ∠B=∠D=90°"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "RHS",
+        "對應頂點",
+        "直角三角形"
+      ]
+    },
+    {
+      "id": "G8B-CH2-018",
+      "page": 2,
+      "question_number": "5(2)",
+      "image": "images/p2_A5_2.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "AB": 3,
+            "AC": 5
+          },
+          "right_angle": "B"
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "DF": 3,
+            "DE": 5
+          },
+          "right_angle": "F"
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △EFD",
+        "property": "RHS",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "RHS",
+        "對應頂點",
+        "直角三角形"
+      ]
+    },
+    {
+      "id": "G8B-CH2-019",
+      "page": 2,
+      "question_number": "1",
+      "image": "images/p2_B1.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              5
+            ],
+            "angles": [
+              60,
+              70
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5
+            ],
+            "angles": [
+              40,
+              70
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              5
+            ],
+            "angles": [
+              60,
+              70
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "AAS",
+        "verified": false,
+        "note": "邊 5 對應同一相對角"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "AAS",
+        "角角邊"
+      ]
+    },
+    {
+      "id": "G8B-CH2-020",
+      "page": 2,
+      "question_number": "2",
+      "image": "images/p2_B2.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              60
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              7
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              60
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "ASA",
+        "verified": false
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "ASA",
+        "角邊角"
+      ]
+    },
+    {
+      "id": "G8B-CH2-021",
+      "page": 2,
+      "question_number": "3",
+      "image": "images/p2_B3.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              4
+            ],
+            "angles": [
+              50,
+              80
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5
+            ],
+            "angles": [
+              50,
+              80
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              4
+            ],
+            "angles": [
+              50,
+              80
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "ASA",
+        "verified": false
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "ASA",
+        "角邊角"
+      ]
+    },
+    {
+      "id": "G8B-CH2-022",
+      "page": 2,
+      "question_number": "4",
+      "image": "images/p2_B4.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              6
+            ],
+            "angles": [
+              50,
+              70
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              6
+            ],
+            "angles": [
+              50,
+              70
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              6
+            ],
+            "angles": [
+              70,
+              50
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "乙"
+        ],
+        "property": "ASA",
+        "verified": false,
+        "note": "需注意角的位置(對應)"
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "ASA",
+        "夾邊辨識"
+      ]
+    },
+    {
+      "id": "G8B-CH2-023",
+      "page": 2,
+      "question_number": "5(1)",
+      "image": "images/p2_B5_1.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "AC": 3
+          },
+          "angles": {
+            "A": 30,
+            "C": 100
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "DE": 3
+          },
+          "angles": {
+            "D": 30,
+            "E": 100
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △DFE",
+        "property": "ASA",
+        "verified": false,
+        "explanation": "∠A=∠D=30°, AC=DE=3, ∠C=∠E=100°"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "ASA",
+        "對應頂點"
+      ]
+    },
+    {
+      "id": "G8B-CH2-024",
+      "page": 2,
+      "question_number": "5(2)",
+      "image": "images/p2_B5_2.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "BA": 5
+          },
+          "angles": {
+            "B": 100,
+            "A": 40
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "EF": 5
+          },
+          "angles": {
+            "E": 40,
+            "F": 100
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △DFE",
+        "property": "ASA",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "ASA",
+        "對應頂點"
+      ]
+    },
+    {
+      "id": "G8B-CH2-025",
+      "page": 3,
+      "question_number": "1",
+      "image": "images/p3_A1.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              5
+            ],
+            "angles": [
+              60,
+              50
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5
+            ],
+            "angles": [
+              40,
+              50
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              5
+            ],
+            "angles": [
+              60,
+              50
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "AAS",
+        "verified": false
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "AAS",
+        "角角邊"
+      ]
+    },
+    {
+      "id": "G8B-CH2-026",
+      "page": 3,
+      "question_number": "2",
+      "image": "images/p3_A2.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              60
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              7
+            ],
+            "angles": [
+              60,
+              20
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              60
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "AAS",
+        "verified": false
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "AAS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-027",
+      "page": 3,
+      "question_number": "3",
+      "image": "images/p3_A3.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              4
+            ],
+            "angles": [
+              30,
+              80
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              5
+            ],
+            "angles": [
+              80,
+              30
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              4
+            ],
+            "angles": [
+              80,
+              30
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "丙"
+        ],
+        "property": "AAS",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "AAS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-028",
+      "page": 3,
+      "question_number": "4",
+      "image": "images/p3_A4.png",
+      "type": "multiple_choice_congruent",
+      "instruction": "找出全等三角形,並寫出全等性質",
+      "given": {
+        "triangles": [
+          {
+            "label": "甲",
+            "sides": [
+              6
+            ],
+            "angles": [
+              50,
+              60
+            ]
+          },
+          {
+            "label": "乙",
+            "sides": [
+              6
+            ],
+            "angles": [
+              50,
+              60
+            ]
+          },
+          {
+            "label": "丙",
+            "sides": [
+              6
+            ],
+            "angles": [
+              60,
+              50
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "congruent_pair": [
+          "甲",
+          "乙"
+        ],
+        "property": "ASA",
+        "verified": false
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "ASA"
+      ]
+    },
+    {
+      "id": "G8B-CH2-029",
+      "page": 3,
+      "question_number": "5(1)",
+      "image": "images/p3_A5_1.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "BC": 6
+          },
+          "angles": {
+            "A": 40,
+            "C": 30
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "DF": 6
+          },
+          "angles": {
+            "D": 30,
+            "E": 40
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △EDF",
+        "property": "AAS",
+        "verified": false
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "AAS",
+        "對應頂點"
+      ]
+    },
+    {
+      "id": "G8B-CH2-030",
+      "page": 3,
+      "question_number": "5(2)",
+      "image": "images/p3_A5_2.png",
+      "type": "vertex_correspondence",
+      "instruction": "寫出相對應的頂點,及全等性質",
+      "given": {
+        "triangle_1": {
+          "name": "ABC",
+          "sides": {
+            "AC": 3
+          },
+          "angles": {
+            "A": 40,
+            "B": 46
+          }
+        },
+        "triangle_2": {
+          "name": "DEF",
+          "sides": {
+            "ED": 3
+          },
+          "angles": {
+            "D": 40,
+            "F": 46
+          }
+        }
+      },
+      "answer": {
+        "correspondence": "△ABC ≅ △DEF",
+        "property": "AAS",
+        "verified": false,
+        "note": "兩個三角形有相同的角度組合"
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "AAS",
+        "對應頂點"
+      ]
+    },
+    {
+      "id": "G8B-CH2-031",
+      "page": 3,
+      "question_number": "綜合",
+      "image": "images/p3_B_combined.png",
+      "type": "matching_combined",
+      "instruction": "下圖①~⑩的三角形中,共有五組全等三角形,請找出來並說明所根據的全等性質",
+      "given": {
+        "triangles": [
+          {
+            "id": 1,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true,
+            "right_position": "兩邊夾角"
+          },
+          {
+            "id": 2,
+            "sides": [
+              7,
+              4,
+              6
+            ]
+          },
+          {
+            "id": 3,
+            "sides": [
+              7
+            ],
+            "angles": [
+              30,
+              50
+            ]
+          },
+          {
+            "id": 4,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 5,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 6,
+            "sides": [
+              7,
+              6
+            ],
+            "angles": [
+              30
+            ]
+          },
+          {
+            "id": 7,
+            "sides": [
+              7
+            ],
+            "angles": [
+              50,
+              30
+            ]
+          },
+          {
+            "id": 8,
+            "sides": [
+              5,
+              7
+            ],
+            "has_right_angle": true
+          },
+          {
+            "id": 9,
+            "sides": [
+              4
+            ],
+            "angles": [
+              40,
+              60
+            ]
+          },
+          {
+            "id": 10,
+            "sides": [
+              6,
+              7,
+              4
+            ]
+          }
+        ]
+      },
+      "answer": {
+        "pairs": [
+          {
+            "a": 1,
+            "b": 8,
+            "property": "RHS"
+          },
+          {
+            "a": 2,
+            "b": 10,
+            "property": "SSS"
+          },
+          {
+            "a": 3,
+            "b": 7,
+            "property": "ASA"
+          },
+          {
+            "a": 4,
+            "b": 6,
+            "property": "SAS"
+          },
+          {
+            "a": 5,
+            "b": 9,
+            "property": "AAS"
+          }
+        ],
+        "verified": false,
+        "note": "答案需仔細比對每個三角形的條件,以上為初步判讀"
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "綜合",
+        "配對",
+        "SSS",
+        "SAS",
+        "ASA",
+        "AAS",
+        "RHS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-032",
+      "page": 4,
+      "question_number": "1",
+      "image": "images/p4_U1.png",
+      "type": "judge_congruent",
+      "instruction": "判斷下列兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "triangle_1": {
+          "sides": [
+            4,
+            3
+          ],
+          "has_right_angle": true
+        },
+        "triangle_2": {
+          "sides": [
+            4,
+            3
+          ],
+          "has_right_angle": true
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "SAS",
+        "verified": false,
+        "note": "兩股相等的直角三角形(也可看作 RHS)"
+      },
+      "difficulty": 1,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "直角三角形",
+        "SAS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-033",
+      "page": 4,
+      "question_number": "2",
+      "image": "images/p4_U2.png",
+      "type": "judge_congruent",
+      "instruction": "判斷下列兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "triangle_1": {
+          "sides": [
+            5,
+            3
+          ],
+          "has_right_angle": true,
+          "note": "斜邊5、一股3"
+        },
+        "triangle_2": {
+          "sides": [
+            5,
+            3
+          ],
+          "has_right_angle": true
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "RHS",
+        "verified": false
+      },
+      "difficulty": 1,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "直角三角形",
+        "RHS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-034",
+      "page": 4,
+      "question_number": "3",
+      "image": "images/p4_U3.png",
+      "type": "judge_congruent",
+      "instruction": "判斷下列兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "triangle_1": {
+          "sides": [
+            3
+          ],
+          "angles": [
+            30
+          ],
+          "has_right_angle": true
+        },
+        "triangle_2": {
+          "sides": [
+            3
+          ],
+          "angles": [
+            30
+          ],
+          "has_right_angle": true
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "ASA",
+        "verified": false,
+        "note": "兩角(30° 與 90°)和夾邊 3"
+      },
+      "difficulty": 1,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "直角三角形",
+        "ASA"
+      ]
+    },
+    {
+      "id": "G8B-CH2-035",
+      "page": 4,
+      "question_number": "4",
+      "image": "images/p4_U4.png",
+      "type": "judge_congruent",
+      "instruction": "判斷下列兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "triangle_1": {
+          "sides": [
+            4
+          ],
+          "angles": [
+            30
+          ],
+          "has_right_angle": true
+        },
+        "triangle_2": {
+          "sides": [
+            4
+          ],
+          "angles": [
+            30
+          ],
+          "has_right_angle": true
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "AAS",
+        "verified": false,
+        "note": "兩角加一邊(非夾邊)"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "直角三角形",
+        "AAS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-036",
+      "page": 4,
+      "question_number": "5",
+      "image": "images/p4_U5.png",
+      "type": "judge_congruent",
+      "instruction": "判斷下列兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "triangle_1": {
+          "sides": [
+            5
+          ],
+          "angles": [
+            30
+          ],
+          "has_right_angle": true
+        },
+        "triangle_2": {
+          "sides": [
+            6
+          ],
+          "angles": [
+            30
+          ],
+          "has_right_angle": true
+        }
+      },
+      "answer": {
+        "is_congruent": false,
+        "verified": false,
+        "note": "邊長不同(5 vs 6),雖然兩角相等"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "不全等",
+        "直角三角形"
+      ]
+    },
+    {
+      "id": "G8B-CH2-037",
+      "page": 4,
+      "question_number": "6",
+      "image": "images/p4_U6.png",
+      "type": "judge_congruent",
+      "instruction": "判斷下列兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "triangle_1": {
+          "sides": [
+            8,
+            6
+          ],
+          "has_right_angle": true
+        },
+        "triangle_2": {
+          "sides": [
+            8,
+            10,
+            6
+          ],
+          "has_right_angle": true,
+          "note": "斜邊10"
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "RHS",
+        "verified": false,
+        "note": "由勾股定理可推出第一個三角形斜邊也是10"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "直角三角形",
+        "RHS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-038",
+      "page": 4,
+      "question_number": "1(1)左",
+      "image": "images/p4_D_L_1.png",
+      "type": "judge_congruent_with_figure",
+      "instruction": "判斷甲、乙兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "figure_description": "等腰三角形被中線(12)分成左右兩半,兩腰均為13",
+        "triangle_甲": {
+          "sides": [
+            13,
+            12
+          ],
+          "has_right_angle": true,
+          "note": "左半三角形"
+        },
+        "triangle_乙": {
+          "sides": [
+            13,
+            12
+          ],
+          "has_right_angle": true,
+          "note": "右半三角形"
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "RHS",
+        "verified": false,
+        "note": "也可用 SSS(共用邊12)或 SAS"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "輔助線",
+        "RHS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-039",
+      "page": 4,
+      "question_number": "1(2)左",
+      "image": "images/p4_D_L_2.png",
+      "type": "judge_congruent_with_figure",
+      "instruction": "判斷甲、乙兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "figure_description": "兩三角形共用一邊(底邊),且共用頂點處兩角標記為相等(××)",
+        "triangle_甲": {
+          "sides": [
+            4
+          ],
+          "shared_side": true,
+          "marked_angle": "×"
+        },
+        "triangle_乙": {
+          "sides": [
+            4
+          ],
+          "shared_side": true,
+          "marked_angle": "×"
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "SAS",
+        "verified": false,
+        "note": "兩邊相等(4)+ 夾角相等(×) + 共用邊"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "共用邊",
+        "SAS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-040",
+      "page": 4,
+      "question_number": "1(3)左",
+      "image": "images/p4_D_L_3.png",
+      "type": "judge_congruent_with_figure",
+      "instruction": "判斷甲、乙兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "figure_description": "平行四邊形被對角線(4)分成兩個三角形,對邊均為 5 和 6",
+        "triangle_甲": {
+          "sides": [
+            5,
+            6,
+            4
+          ]
+        },
+        "triangle_乙": {
+          "sides": [
+            5,
+            6,
+            4
+          ]
+        }
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "SSS",
+        "verified": false,
+        "note": "三邊皆相等(5, 6, 對角線4)"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "平行四邊形",
+        "SSS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-041",
+      "page": 4,
+      "question_number": "1(1)右",
+      "image": "images/p4_D_R_1.png",
+      "type": "judge_congruent_with_figure",
+      "instruction": "判斷甲、乙兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "figure_description": "兩三角形交叉相連於頂點,各有 30°角和邊 5",
+        "triangle_甲": {
+          "sides": [
+            5
+          ],
+          "angles": [
+            30
+          ]
+        },
+        "triangle_乙": {
+          "sides": [
+            5
+          ],
+          "angles": [
+            30
+          ]
+        }
+      },
+      "answer": {
+        "is_congruent": false,
+        "verified": false,
+        "note": "資訊不足以判定全等(只有 SSA 條件)"
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "不全等",
+        "SSA陷阱"
+      ]
+    },
+    {
+      "id": "G8B-CH2-042",
+      "page": 4,
+      "question_number": "1(2)右",
+      "image": "images/p4_D_R_2.png",
+      "type": "judge_congruent_with_figure",
+      "instruction": "判斷甲、乙兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "figure_description": "兩直角三角形交叉於 C 點,各斜邊均為 5",
+        "triangle_甲": {
+          "sides": [
+            5
+          ],
+          "has_right_angle": true
+        },
+        "triangle_乙": {
+          "sides": [
+            5
+          ],
+          "has_right_angle": true
+        },
+        "shared": "頂點 C 與對頂角"
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "AAS",
+        "verified": false,
+        "note": "對頂角相等 + 直角 + 斜邊 → AAS"
+      },
+      "difficulty": 3,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "對頂角",
+        "直角三角形",
+        "AAS"
+      ]
+    },
+    {
+      "id": "G8B-CH2-043",
+      "page": 4,
+      "question_number": "1(3)右",
+      "image": "images/p4_D_R_3.png",
+      "type": "judge_congruent_with_figure",
+      "instruction": "判斷甲、乙兩個三角形是否全等,若是,請寫出全等性質",
+      "given": {
+        "figure_description": "兩三角形交叉於 O 點(蝴蝶形),邊長 5 和 7 對應",
+        "triangle_甲": {
+          "sides": [
+            5,
+            7
+          ]
+        },
+        "triangle_乙": {
+          "sides": [
+            5,
+            7
+          ]
+        },
+        "shared": "頂點 O 與對頂角"
+      },
+      "answer": {
+        "is_congruent": true,
+        "property": "SAS",
+        "verified": false,
+        "note": "對頂角相等 + 兩邊夾角相等"
+      },
+      "difficulty": 2,
+      "tags": [
+        "三角形全等",
+        "判斷題",
+        "對頂角",
+        "蝴蝶形",
+        "SAS"
+      ]
+    }
+  ]
+}

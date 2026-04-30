@@ -1,0 +1,526 @@
+/* 三角形全等題庫 — 單頁練習應用 */
+"use strict";
+
+const PROPERTY_OPTIONS = ["SSS", "SAS", "ASA", "AAS", "RHS"];
+const TYPE_LABEL = {
+  multiple_choice_congruent: "找出全等三角形",
+  vertex_correspondence: "寫出對應頂點",
+  judge_congruent: "判斷是否全等",
+  judge_congruent_with_figure: "判斷是否全等(圖形題)",
+  matching_combined: "綜合配對",
+};
+
+const state = {
+  view: "loading",   // loading | home | quiz | result
+  questions: [],     // full bank
+  selected: [],      // questions in current quiz
+  answers: {},       // id -> answer obj
+  submitted: false,
+};
+
+const $app = document.getElementById("app");
+
+/* ---------------- helpers ---------------- */
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function el(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  if (attrs) {
+    for (const k in attrs) {
+      if (k === "class") e.className = attrs[k];
+      else if (k === "html") e.innerHTML = attrs[k];
+      else if (k.startsWith("on")) e.addEventListener(k.slice(2), attrs[k]);
+      else if (attrs[k] === true) e.setAttribute(k, "");
+      else if (attrs[k] != null && attrs[k] !== false) e.setAttribute(k, attrs[k]);
+    }
+  }
+  for (const kid of kids) {
+    if (kid == null || kid === false) continue;
+    e.appendChild(typeof kid === "string" ? document.createTextNode(kid) : kid);
+  }
+  return e;
+}
+
+function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+function pairKey(a, b) {
+  return [a, b].sort().join("");
+}
+
+function normalizeCorrespondence(s) {
+  if (!s) return "";
+  return s
+    .replace(/[△∆\s]/g, "")
+    .replace(/[≅=]/g, "=")
+    .toUpperCase();
+}
+
+/* ---------------- screens ---------------- */
+
+function renderHome() {
+  clear($app);
+  const total = state.questions.length;
+
+  const propertyStats = {};
+  const typeStats = {};
+  for (const q of state.questions) {
+    const prop = q.answer && q.answer.property;
+    if (prop) propertyStats[prop] = (propertyStats[prop] || 0) + 1;
+    typeStats[q.type] = (typeStats[q.type] || 0) + 1;
+  }
+
+  const home = el("div", { class: "home-card" },
+    el("h2", null, "選擇練習方式"),
+
+    el("div", null,
+      el("div", { class: "answer-field" },
+        el("label", null, "題數"),
+        el("div", { class: "option-row" },
+          el("label", null,
+            el("input", { type: "radio", name: "mode", value: "20", checked: true }),
+            "隨機 20 題"
+          ),
+          el("label", null,
+            el("input", { type: "radio", name: "mode", value: "all" }),
+            `全部 ${total} 題`
+          ),
+        ),
+      ),
+
+      el("div", { class: "answer-field" },
+        el("label", null, "題型(可複選)"),
+        el("div", { class: "option-row" },
+          ...Object.keys(TYPE_LABEL).map(t =>
+            el("label", null,
+              el("input", { type: "checkbox", name: "type", value: t, checked: true }),
+              `${TYPE_LABEL[t]}（${typeStats[t] || 0}）`
+            )
+          ),
+        ),
+      ),
+
+      el("div", { class: "answer-field" },
+        el("label", null, "出題順序"),
+        el("div", { class: "option-row" },
+          el("label", null,
+            el("input", { type: "radio", name: "order", value: "shuffle", checked: true }),
+            "隨機"
+          ),
+          el("label", null,
+            el("input", { type: "radio", name: "order", value: "sequential" }),
+            "依原順序"
+          ),
+        ),
+      ),
+    ),
+
+    el("div", { class: "btn-group" },
+      el("button", { class: "btn", onclick: startQuiz }, "開始練習"),
+    ),
+  );
+
+  const stats = el("div", { class: "home-card" },
+    el("h2", null, "題庫統計"),
+    el("div", { class: "stats" },
+      ...PROPERTY_OPTIONS.map(p =>
+        el("div", null,
+          el("b", null, String(propertyStats[p] || 0)),
+          el("span", null, p),
+        )
+      ),
+    ),
+  );
+
+  $app.appendChild(home);
+  $app.appendChild(stats);
+}
+
+function startQuiz() {
+  const mode = document.querySelector('input[name="mode"]:checked').value;
+  const order = document.querySelector('input[name="order"]:checked').value;
+  const types = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(i => i.value);
+
+  if (types.length === 0) {
+    alert("請至少選擇一種題型");
+    return;
+  }
+
+  let pool = state.questions.filter(q => types.includes(q.type));
+  if (order === "shuffle") pool = shuffle(pool);
+  if (mode === "20") pool = pool.slice(0, 20);
+
+  if (pool.length === 0) {
+    alert("沒有符合條件的題目");
+    return;
+  }
+
+  state.selected = pool;
+  state.answers = {};
+  state.submitted = false;
+  state.view = "quiz";
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+function renderQuiz() {
+  clear($app);
+
+  const progress = el("div", { class: "progress-bar" },
+    el("span", null, `共 ${state.selected.length} 題`),
+    el("button", {
+      class: "btn btn-secondary",
+      onclick: () => { if (confirm("確定回到首頁？目前進度將消失")) { state.view = "home"; renderHome(); } }
+    }, "回首頁"),
+  );
+  $app.appendChild(progress);
+
+  state.selected.forEach((q, idx) => {
+    $app.appendChild(renderQuestionCard(q, idx));
+  });
+
+  const submit = el("div", { class: "btn-group", style: "justify-content:center;margin-top:20px" },
+    el("button", { class: "btn", onclick: submitQuiz }, "送出答案"),
+  );
+  $app.appendChild(submit);
+}
+
+function renderQuestionCard(q, idx) {
+  const card = el("div", { class: "q-card", id: `q-${q.id}` });
+
+  const header = el("div", { class: "q-header" },
+    el("span", { class: "q-num" }, `第 ${idx + 1} 題`),
+    el("span", { class: "q-meta" },
+      `頁 ${q.page} ・ 題 ${q.question_number}`,
+      el("span", { class: "q-tag" }, TYPE_LABEL[q.type] || q.type),
+      el("span", { class: "q-tag" }, "★".repeat(q.difficulty || 1)),
+    ),
+  );
+  card.appendChild(header);
+  card.appendChild(el("div", { class: "q-instruction" }, q.instruction || ""));
+
+  if (q.image) {
+    card.appendChild(el("img", { class: "q-image", src: q.image, alt: q.id, loading: "lazy" }));
+  }
+
+  card.appendChild(renderAnswerInputs(q));
+  return card;
+}
+
+function renderAnswerInputs(q) {
+  const wrap = el("div", { class: "answer-row", id: `a-${q.id}` });
+  const aid = (suffix) => `${q.id}--${suffix}`;
+
+  const propSelect = (suffix, includeNone) => el("select", { id: aid(suffix) },
+    el("option", { value: "" }, "── 請選擇 ──"),
+    ...PROPERTY_OPTIONS.map(p => el("option", { value: p }, p)),
+    includeNone ? el("option", { value: "none" }, "不全等 / 無") : null,
+  );
+
+  if (q.type === "multiple_choice_congruent") {
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, "全等的兩個三角形"),
+        el("select", { id: aid("pair") },
+          el("option", { value: "" }, "── 請選擇 ──"),
+          el("option", { value: "甲乙" }, "甲、乙"),
+          el("option", { value: "甲丙" }, "甲、丙"),
+          el("option", { value: "乙丙" }, "乙、丙"),
+          el("option", { value: "none" }, "皆不全等"),
+        ),
+      )
+    );
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, "全等性質"),
+        propSelect("prop", true),
+      )
+    );
+  } else if (q.type === "vertex_correspondence") {
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, "對應(例如：△ABC ≅ △DFE)"),
+        el("input", { id: aid("corr"), type: "text", placeholder: "△ABC ≅ △???", autocomplete: "off" }),
+      )
+    );
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, "全等性質"),
+        propSelect("prop", false),
+      )
+    );
+  } else if (q.type === "judge_congruent" || q.type === "judge_congruent_with_figure") {
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, "是否全等"),
+        el("select", { id: aid("yn"),
+          onchange: (e) => {
+            const propEl = document.getElementById(aid("prop"));
+            if (propEl) propEl.disabled = e.target.value !== "yes";
+          }
+        },
+          el("option", { value: "" }, "── 請選擇 ──"),
+          el("option", { value: "yes" }, "是,全等"),
+          el("option", { value: "no" }, "否,不全等"),
+        ),
+      )
+    );
+    wrap.appendChild(
+      el("div", { class: "answer-field" },
+        el("label", null, "全等性質(若全等)"),
+        propSelect("prop", false),
+      )
+    );
+  } else if (q.type === "matching_combined") {
+    wrap.appendChild(
+      el("div", { class: "answer-field", style: "flex-basis:100%" },
+        el("label", null, "綜合題：請於紙上寫出 5 組配對及性質,完成後送出查看參考答案"),
+        el("input", { id: aid("note"), type: "text", placeholder: "可在此記下你的答案,例如：①≅⑧(RHS)、②≅⑩(SSS)…", autocomplete: "off" }),
+      )
+    );
+  }
+
+  return wrap;
+}
+
+/* ---------------- grading ---------------- */
+
+function readAnswer(q) {
+  const get = (suffix) => {
+    const e = document.getElementById(`${q.id}--${suffix}`);
+    return e ? e.value.trim() : "";
+  };
+  if (q.type === "multiple_choice_congruent") {
+    return { pair: get("pair"), prop: get("prop") };
+  }
+  if (q.type === "vertex_correspondence") {
+    return { corr: get("corr"), prop: get("prop") };
+  }
+  if (q.type === "judge_congruent" || q.type === "judge_congruent_with_figure") {
+    return { yn: get("yn"), prop: get("prop") };
+  }
+  if (q.type === "matching_combined") {
+    return { note: get("note") };
+  }
+  return {};
+}
+
+function gradeQuestion(q, ans) {
+  // returns { correct: bool|null, parts: [{label, ok, you, expected}] }
+  const parts = [];
+  if (q.type === "multiple_choice_congruent") {
+    const expectedPair = q.answer.congruent_pair;
+    const expectedKey = expectedPair ? pairKey(expectedPair[0], expectedPair[1]) : "none";
+    const yourKey = ans.pair === "none" ? "none" : (ans.pair ? pairKey(ans.pair[0], ans.pair[1]) : "");
+    const pairOk = yourKey === expectedKey;
+    parts.push({
+      label: "全等的兩個三角形",
+      ok: pairOk,
+      you: ans.pair === "none" ? "皆不全等" : (ans.pair ? `${ans.pair[0]}、${ans.pair[1]}` : "(未填)"),
+      expected: expectedPair ? `${expectedPair[0]}、${expectedPair[1]}` : "皆不全等",
+    });
+    const expectedProp = q.answer.property || "none";
+    const yourProp = ans.prop || "";
+    const propOk = yourProp === expectedProp || (yourProp === "none" && !q.answer.property);
+    parts.push({
+      label: "全等性質",
+      ok: propOk,
+      you: ans.prop === "none" ? "不全等 / 無" : (ans.prop || "(未填)"),
+      expected: q.answer.property || "─",
+    });
+    return { correct: pairOk && propOk, parts };
+  }
+  if (q.type === "vertex_correspondence") {
+    const yourCorr = normalizeCorrespondence(ans.corr);
+    const expectedCorr = normalizeCorrespondence(q.answer.correspondence);
+    const corrOk = yourCorr.length > 0 && yourCorr === expectedCorr;
+    parts.push({
+      label: "對應",
+      ok: corrOk,
+      you: ans.corr || "(未填)",
+      expected: q.answer.correspondence || "─",
+    });
+    const propOk = (ans.prop || "") === (q.answer.property || "");
+    parts.push({
+      label: "全等性質",
+      ok: propOk,
+      you: ans.prop || "(未填)",
+      expected: q.answer.property || "─",
+    });
+    return { correct: corrOk && propOk, parts };
+  }
+  if (q.type === "judge_congruent" || q.type === "judge_congruent_with_figure") {
+    const expectedYn = q.answer.is_congruent ? "yes" : "no";
+    const ynOk = ans.yn === expectedYn;
+    parts.push({
+      label: "是否全等",
+      ok: ynOk,
+      you: ans.yn === "yes" ? "是,全等" : (ans.yn === "no" ? "否,不全等" : "(未填)"),
+      expected: q.answer.is_congruent ? "是,全等" : "否,不全等",
+    });
+    if (q.answer.is_congruent) {
+      const propOk = ans.yn === "yes" && (ans.prop || "") === (q.answer.property || "");
+      parts.push({
+        label: "全等性質",
+        ok: propOk,
+        you: ans.prop || "(未填)",
+        expected: q.answer.property || "─",
+      });
+      return { correct: ynOk && propOk, parts };
+    }
+    return { correct: ynOk, parts };
+  }
+  if (q.type === "matching_combined") {
+    const pairsText = (q.answer.pairs || []).map(p => `${cir(p.a)}≅${cir(p.b)}(${p.property})`).join("、");
+    parts.push({
+      label: "你的記錄",
+      ok: null,
+      you: ans.note || "(未填)",
+      expected: pairsText || "(無)",
+    });
+    return { correct: null, parts };
+  }
+  return { correct: null, parts: [] };
+}
+
+function cir(n) {
+  // 1..10 -> ①②③④⑤⑥⑦⑧⑨⑩
+  const t = ["", "①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩"];
+  return t[n] || String(n);
+}
+
+function submitQuiz() {
+  const answers = {};
+  for (const q of state.selected) answers[q.id] = readAnswer(q);
+  state.answers = answers;
+  state.submitted = true;
+  renderResult();
+  window.scrollTo(0, 0);
+}
+
+function renderResult() {
+  clear($app);
+
+  let correct = 0, wrong = 0, ungraded = 0;
+  const results = state.selected.map((q, idx) => {
+    const ans = state.answers[q.id] || {};
+    const r = gradeQuestion(q, ans);
+    if (r.correct === true) correct++;
+    else if (r.correct === false) wrong++;
+    else ungraded++;
+    return { q, ans, r, idx };
+  });
+
+  const graded = correct + wrong;
+  const score = graded > 0 ? Math.round((correct / graded) * 100) : 0;
+
+  const summary = el("div", { class: "result-card" },
+    el("div", { class: "result-score" },
+      `${score}`,
+      el("small", null, " 分"),
+    ),
+    el("div", { style: "color:var(--muted);margin-top:4px" },
+      `${correct} 答對 / ${graded} 計分題` + (ungraded ? `（另 ${ungraded} 題自評）` : "")
+    ),
+    el("div", { class: "breakdown" },
+      el("span", null, "✅ ", el("b", { style: "color:var(--correct)" }, String(correct)), " 答對"),
+      el("span", null, "❌ ", el("b", { style: "color:var(--wrong)" }, String(wrong)), " 答錯"),
+      ungraded ? el("span", null, "📝 ", el("b", null, String(ungraded)), " 自評") : null,
+    ),
+    el("div", { class: "btn-group", style: "justify-content:center" },
+      el("button", { class: "btn", onclick: () => { state.view = "home"; renderHome(); window.scrollTo(0,0); } }, "再練一次"),
+      el("button", { class: "btn btn-secondary", onclick: () => { startReplay(); } }, "重做相同題目"),
+    ),
+  );
+  $app.appendChild(summary);
+
+  for (const { q, ans, r, idx } of results) {
+    $app.appendChild(renderResultCard(q, ans, r, idx));
+  }
+}
+
+function startReplay() {
+  state.answers = {};
+  state.submitted = false;
+  state.view = "quiz";
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+function renderResultCard(q, ans, r, idx) {
+  const cls = r.correct === true ? "correct" : r.correct === false ? "wrong" : "unknown";
+  const card = el("div", { class: `q-card ${cls}` });
+
+  const header = el("div", { class: "q-header" },
+    el("span", { class: "q-num" }, `第 ${idx + 1} 題`),
+    el("span", { class: "q-meta" },
+      `頁 ${q.page} ・ 題 ${q.question_number}`,
+      el("span", { class: "q-tag" }, TYPE_LABEL[q.type] || q.type),
+      el("span", { class: "q-tag" }, "★".repeat(q.difficulty || 1)),
+    ),
+  );
+  card.appendChild(header);
+  card.appendChild(el("div", { class: "q-instruction" }, q.instruction || ""));
+
+  if (q.image) {
+    card.appendChild(el("img", { class: "q-image", src: q.image, alt: q.id, loading: "lazy" }));
+  }
+
+  const fb = el("div", { class: "feedback" });
+  if (r.correct === true) {
+    fb.appendChild(el("div", { class: "label-correct" }, "✅ 答對"));
+  } else if (r.correct === false) {
+    fb.appendChild(el("div", { class: "label-wrong" }, "❌ 答錯"));
+  } else {
+    fb.appendChild(el("div", { class: "label-info" }, "📝 此題自評(不計分)"));
+  }
+
+  const dl = el("dl");
+  for (const part of r.parts) {
+    const mark = part.ok === true ? "✅" : part.ok === false ? "❌" : "・";
+    dl.appendChild(el("dt", null, part.label));
+    dl.appendChild(el("dd", null, `你的：${part.you}　／　正解：${part.expected}　${mark}`));
+  }
+  fb.appendChild(dl);
+
+  if (q.answer && q.answer.explanation) {
+    fb.appendChild(el("div", { style: "margin-top:6px;font-size:0.9rem;color:var(--muted)" },
+      `說明：${q.answer.explanation}`));
+  }
+  if (q.answer && q.answer.note) {
+    fb.appendChild(el("div", { style: "margin-top:4px;font-size:0.85rem;color:var(--muted)" },
+      `註：${q.answer.note}`));
+  }
+  if (q.answer && q.answer.verified === false) {
+    fb.appendChild(el("div", { style: "margin-top:4px;font-size:0.8rem;color:var(--warn)" },
+      "⚠ 此題答案未核對教師手冊,請以課本為準"));
+  }
+
+  card.appendChild(fb);
+  return card;
+}
+
+/* ---------------- bootstrap ---------------- */
+
+async function load() {
+  $app.innerHTML = '<div class="home-card">載入題庫中…</div>';
+  try {
+    const res = await fetch("questions.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    state.questions = data.questions || [];
+    state.view = "home";
+    renderHome();
+  } catch (err) {
+    $app.innerHTML = `<div class="home-card"><h2 style="color:var(--wrong)">載入失敗</h2><p>${err.message}</p><p style="color:var(--muted);font-size:0.9rem">請以本地伺服器或 GitHub Pages 開啟,直接以檔案協議(file://)開啟瀏覽器會無法載入 JSON。</p></div>`;
+  }
+}
+
+load();
