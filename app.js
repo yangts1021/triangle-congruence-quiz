@@ -13,12 +13,18 @@ const TYPE_LABEL = {
 
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
 
+const ATTEMPTS_KEY = "tcq_attempts_v1";
+const STATS_KEY    = "tcq_question_stats_v1";
+const MAX_ATTEMPTS = 50;
+
 const state = {
-  view: "loading",   // loading | home | quiz | result
-  questions: [],     // full bank
-  selected: [],      // questions in current quiz
-  answers: {},       // id -> answer obj
+  view: "loading",         // loading | home | quiz | result | history
+  questions: [],           // full bank
+  selected: [],            // questions in current quiz
+  answers: {},             // id -> answer obj
   submitted: false,
+  currentMode: "20",       // remembered for recording attempts
+  viewingAttemptId: null,  // when reviewing a past attempt
 };
 
 const $app = document.getElementById("app");
@@ -58,6 +64,81 @@ function pairKey(a, b) {
   return [a, b].sort().join("");
 }
 
+/* ---------------- stats / attempts (localStorage) ---------------- */
+
+function loadStats() {
+  try { return JSON.parse(localStorage.getItem(STATS_KEY) || "{}"); }
+  catch { return {}; }
+}
+function saveStats(s) { localStorage.setItem(STATS_KEY, JSON.stringify(s)); }
+
+function loadAttempts() {
+  try { return JSON.parse(localStorage.getItem(ATTEMPTS_KEY) || "[]"); }
+  catch { return []; }
+}
+function saveAttempts(arr) {
+  // keep most recent
+  const trimmed = arr.slice(-MAX_ATTEMPTS);
+  localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(trimmed));
+}
+
+function recordAttempt(results, mode) {
+  const stats = loadStats();
+  const ts = Date.now();
+  for (const r of results) {
+    const id = r.q.id;
+    const s = stats[id] || { shown: 0, correct: 0, wrong: 0, last_wrong_at: null, last_seen_at: null, last_correct: null };
+    s.shown += 1;
+    s.last_seen_at = ts;
+    if (r.r.correct === true) {
+      s.correct += 1;
+      s.last_correct = true;
+    } else if (r.r.correct === false) {
+      s.wrong += 1;
+      s.last_wrong_at = ts;
+      s.last_correct = false;
+    }
+    stats[id] = s;
+  }
+  saveStats(stats);
+
+  const attempt = {
+    id: "a_" + ts,
+    timestamp: ts,
+    mode,
+    total: results.length,
+    correct: results.filter(r => r.r.correct === true).length,
+    wrong:   results.filter(r => r.r.correct === false).length,
+    ungraded:results.filter(r => r.r.correct == null).length,
+    questions: results.map(r => ({
+      id: r.q.id,
+      correct: r.r.correct,
+      answer: r.ans,
+    })),
+  };
+  const attempts = loadAttempts();
+  attempts.push(attempt);
+  saveAttempts(attempts);
+  return attempt.id;
+}
+
+function getWrongPool() {
+  const stats = loadStats();
+  return state.questions.filter(q => stats[q.id] && stats[q.id].last_correct === false);
+}
+
+function formatTimestamp(ts) {
+  const d = new Date(ts);
+  const pad = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function modeLabel(mode) {
+  if (mode === "all") return "全部題目";
+  if (mode === "wrong") return "錯題複習";
+  return mode + " 題";
+}
+
 function parseCorrespondence(q) {
   // Returns {first, second} extracted from q.answer.correspondence (e.g., "△ABC ≅ △DFE")
   const s = (q && q.answer && q.answer.correspondence) || "";
@@ -85,6 +166,9 @@ function renderHome() {
     typeStats[q.type] = (typeStats[q.type] || 0) + 1;
   }
 
+  const wrongCount = getWrongPool().length;
+  const attempts = loadAttempts();
+
   const home = el("div", { class: "home-card" },
     el("h2", null, "選擇練習方式"),
 
@@ -100,13 +184,17 @@ function renderHome() {
             el("input", { type: "radio", name: "mode", value: "all" }),
             `全部 ${total} 題`
           ),
+          el("label", { class: wrongCount === 0 ? "disabled" : "" },
+            el("input", { type: "radio", name: "mode", value: "wrong", disabled: wrongCount === 0 }),
+            `🔁 錯題複習 (${wrongCount})`
+          ),
         ),
       ),
 
       el("div", { class: "answer-field" },
         el("label", null, "題型(可複選)"),
         el("div", { class: "option-row" },
-          ...Object.keys(TYPE_LABEL).map(t =>
+          ...Object.keys(TYPE_LABEL).filter(t => (typeStats[t] || 0) > 0).map(t =>
             el("label", null,
               el("input", { type: "checkbox", name: "type", value: t, checked: true }),
               `${TYPE_LABEL[t]}（${typeStats[t] || 0}）`
@@ -132,6 +220,11 @@ function renderHome() {
 
     el("div", { class: "btn-group" },
       el("button", { class: "btn", onclick: startQuiz }, "開始練習"),
+      el("button", {
+        class: "btn btn-secondary",
+        disabled: attempts.length === 0,
+        onclick: () => { state.view = "history"; renderHistory(); window.scrollTo(0,0); }
+      }, `📝 作答紀錄 (${attempts.length})`),
     ),
   );
 
@@ -161,18 +254,28 @@ function startQuiz() {
     return;
   }
 
-  let pool = state.questions.filter(q => types.includes(q.type));
-  if (order === "shuffle") pool = shuffle(pool);
-  if (mode === "20") pool = pool.slice(0, 20);
+  let pool;
+  if (mode === "wrong") {
+    pool = getWrongPool().filter(q => types.includes(q.type));
+    // for wrong mode, sort by oldest mistake first so they don't keep re-encountering the same ones
+    const stats = loadStats();
+    pool.sort((a, b) => (stats[a.id].last_wrong_at || 0) - (stats[b.id].last_wrong_at || 0));
+    if (order === "shuffle") pool = shuffle(pool);
+  } else {
+    pool = state.questions.filter(q => types.includes(q.type));
+    if (order === "shuffle") pool = shuffle(pool);
+    if (mode === "20") pool = pool.slice(0, 20);
+  }
 
   if (pool.length === 0) {
-    alert("沒有符合條件的題目");
+    alert(mode === "wrong" ? "目前沒有錯題可複習(請先答錯一些題目 🙂)" : "沒有符合條件的題目");
     return;
   }
 
   state.selected = pool;
   state.answers = {};
   state.submitted = false;
+  state.currentMode = mode;
   state.view = "quiz";
   renderQuiz();
   window.scrollTo(0, 0);
@@ -465,6 +568,15 @@ function submitQuiz() {
   for (const q of state.selected) answers[q.id] = readAnswer(q);
   state.answers = answers;
   state.submitted = true;
+
+  // Compute results once and persist this attempt
+  const results = state.selected.map((q, idx) => {
+    const ans = answers[q.id] || {};
+    const r = gradeQuestion(q, ans);
+    return { q, ans, r, idx };
+  });
+  state.viewingAttemptId = recordAttempt(results, state.currentMode || "20");
+  state.view = "result";
   renderResult();
   window.scrollTo(0, 0);
 }
@@ -484,6 +596,7 @@ function renderResult() {
 
   const graded = correct + wrong;
   const score = graded > 0 ? Math.round((correct / graded) * 100) : 0;
+  const isPastView = state.viewingAttemptId && state.viewingAttemptId.startsWith("a_") && !state.submitted;
 
   const summary = el("div", { class: "result-card" },
     el("div", { class: "result-score" },
@@ -499,8 +612,10 @@ function renderResult() {
       ungraded ? el("span", null, "📝 ", el("b", null, String(ungraded)), " 自評") : null,
     ),
     el("div", { class: "btn-group", style: "justify-content:center" },
-      el("button", { class: "btn", onclick: () => { state.view = "home"; renderHome(); window.scrollTo(0,0); } }, "再練一次"),
+      el("button", { class: "btn", onclick: () => { state.view = "home"; state.viewingAttemptId = null; renderHome(); window.scrollTo(0,0); } }, "回首頁"),
       el("button", { class: "btn btn-secondary", onclick: () => { startReplay(); } }, "重做相同題目"),
+      wrong > 0 ? el("button", { class: "btn btn-secondary", onclick: () => { startReplayWrong(results); } }, `🔁 只練錯題 (${wrong})`) : null,
+      isPastView ? el("button", { class: "btn btn-secondary", onclick: () => { state.view="history"; renderHistory(); window.scrollTo(0,0); } }, "← 回紀錄") : null,
     ),
   );
   $app.appendChild(summary);
@@ -510,9 +625,155 @@ function renderResult() {
   }
 }
 
+function startReplayWrong(results) {
+  const wrongQs = results.filter(r => r.r.correct === false).map(r => r.q);
+  if (wrongQs.length === 0) return;
+  state.selected = shuffle(wrongQs);
+  state.answers = {};
+  state.submitted = false;
+  state.viewingAttemptId = null;
+  state.currentMode = "wrong";
+  state.view = "quiz";
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
 function startReplay() {
   state.answers = {};
   state.submitted = false;
+  state.viewingAttemptId = null;
+  state.view = "quiz";
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+/* ---------------- history view ---------------- */
+
+function renderHistory() {
+  clear($app);
+  const attempts = loadAttempts().slice().reverse(); // newest first
+
+  const header = el("div", { class: "home-card" },
+    el("div", { style: "display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px" },
+      el("h2", { style: "margin:0" }, "📝 作答紀錄"),
+      el("div", { class: "btn-group" },
+        el("button", { class: "btn btn-secondary", onclick: () => { state.view = "home"; renderHome(); window.scrollTo(0,0); } }, "← 回首頁"),
+        attempts.length > 0 ? el("button", {
+          class: "btn btn-secondary",
+          onclick: () => {
+            if (confirm(`確定清除全部 ${attempts.length} 筆作答紀錄？(每題的對錯統計也會一起清掉)`)) {
+              localStorage.removeItem(ATTEMPTS_KEY);
+              localStorage.removeItem(STATS_KEY);
+              renderHistory();
+            }
+          }
+        }, "🗑 清除全部") : null,
+      ),
+    ),
+    el("p", { style: "color:var(--muted);font-size:0.9rem;margin:8px 0 0" },
+      `共 ${attempts.length} 筆紀錄(最多保留 ${MAX_ATTEMPTS} 筆)`),
+  );
+  $app.appendChild(header);
+
+  if (attempts.length === 0) {
+    $app.appendChild(el("div", { class: "home-card", style: "text-align:center;color:var(--muted)" },
+      "還沒有作答紀錄。回首頁開始第一次練習吧！"));
+    return;
+  }
+
+  for (const a of attempts) {
+    $app.appendChild(renderHistoryCard(a));
+  }
+}
+
+function renderHistoryCard(a) {
+  const graded = a.correct + a.wrong;
+  const score = graded > 0 ? Math.round((a.correct / graded) * 100) : 0;
+  const card = el("div", { class: "home-card", style: "display:flex;flex-direction:column;gap:8px" });
+
+  card.appendChild(el("div", { style: "display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline" },
+    el("div", null,
+      el("b", { style: "font-size:1.05rem" }, formatTimestamp(a.timestamp)),
+      el("span", { class: "q-tag", style: "margin-left:8px" }, modeLabel(a.mode)),
+    ),
+    el("div", { style: "font-size:1.2rem;font-weight:700;color:var(--accent)" }, `${score} 分`),
+  ));
+
+  card.appendChild(el("div", { style: "color:var(--muted);font-size:0.9rem" },
+    `${a.total} 題 ・ ✅ ${a.correct} 答對 ・ ❌ ${a.wrong} 答錯` + (a.ungraded ? ` ・ 📝 ${a.ungraded} 自評` : "")
+  ));
+
+  card.appendChild(el("div", { class: "btn-group" },
+    el("button", {
+      class: "btn btn-secondary",
+      onclick: () => viewPastAttempt(a.id),
+    }, "🔍 看詳解"),
+    el("button", {
+      class: "btn btn-secondary",
+      onclick: () => replayPastAttempt(a.id),
+    }, "↻ 重做相同題目"),
+    a.wrong > 0 ? el("button", {
+      class: "btn btn-secondary",
+      onclick: () => replayWrongFrom(a.id),
+    }, `🔁 只練錯題 (${a.wrong})`) : null,
+    el("button", {
+      class: "btn btn-secondary",
+      style: "color:var(--wrong)",
+      onclick: () => {
+        if (!confirm("刪除這筆紀錄？")) return;
+        const all = loadAttempts().filter(x => x.id !== a.id);
+        saveAttempts(all);
+        renderHistory();
+      },
+    }, "刪除"),
+  ));
+
+  return card;
+}
+
+function viewPastAttempt(attemptId) {
+  const att = loadAttempts().find(a => a.id === attemptId);
+  if (!att) return;
+  const qmap = Object.fromEntries(state.questions.map(q => [q.id, q]));
+  const selected = att.questions.map(qa => qmap[qa.id]).filter(Boolean);
+  const answers = {};
+  for (const qa of att.questions) answers[qa.id] = qa.answer || {};
+  state.selected = selected;
+  state.answers = answers;
+  state.submitted = false; // viewing past, not new submission
+  state.viewingAttemptId = attemptId;
+  state.view = "result";
+  renderResult();
+  window.scrollTo(0, 0);
+}
+
+function replayPastAttempt(attemptId) {
+  const att = loadAttempts().find(a => a.id === attemptId);
+  if (!att) return;
+  const qmap = Object.fromEntries(state.questions.map(q => [q.id, q]));
+  const selected = att.questions.map(qa => qmap[qa.id]).filter(Boolean);
+  if (selected.length === 0) { alert("題目不存在"); return; }
+  state.selected = selected;
+  state.answers = {};
+  state.submitted = false;
+  state.viewingAttemptId = null;
+  state.currentMode = att.mode;
+  state.view = "quiz";
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+
+function replayWrongFrom(attemptId) {
+  const att = loadAttempts().find(a => a.id === attemptId);
+  if (!att) return;
+  const qmap = Object.fromEntries(state.questions.map(q => [q.id, q]));
+  const wrongQs = att.questions.filter(qa => qa.correct === false).map(qa => qmap[qa.id]).filter(Boolean);
+  if (wrongQs.length === 0) { alert("這次沒有錯題"); return; }
+  state.selected = shuffle(wrongQs);
+  state.answers = {};
+  state.submitted = false;
+  state.viewingAttemptId = null;
+  state.currentMode = "wrong";
   state.view = "quiz";
   renderQuiz();
   window.scrollTo(0, 0);
